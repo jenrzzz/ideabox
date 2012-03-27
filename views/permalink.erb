@@ -1,0 +1,30 @@
+<% if @idea %>
+    <script language="javascript" type="application/javascript">
+        // <!--
+        function cancel() {
+        window.location = "/";
+        }
+        // -->
+    </script>
+    
+    <div class="row">
+        <div class="span3">Editing <strong><%= @idea.title %></strong></div>
+    </div>
+    <form action="/<%= @idea.id %>" method="post">
+        <div class="row">
+            <div class="span4"><input name="title" type="text" value="<%= @idea.title %>" /></div>
+        </div>
+        <div class="row">
+            <div class="span4"><textarea name="ideatext"><%= @idea.text %></textarea></div>
+        </div>
+        <div class="row">
+            <div class="span2">
+                <input type="submit" class="btn btn-primary" value="Save" />
+                <input type="button" class="btn" value="Cancel" onClick="javascript:cancel();" />
+            </div>
+        </div>
+    </form>
+<% else %>
+  <p>Idea not found.</p>
+  <a href="/">Click here to return</a>
+<% end %>

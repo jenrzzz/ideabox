@@ -1,0 +1,29 @@
+<section id="ideas">
+    <% @ideas.each do |idea| %>
+        <article>
+        <div class="row">
+            <div class="span4"><h4><%= idea.title %></h4></div>
+        </div>
+        <div class="row">
+            <div class="span8"><p><%= idea.text %></p></div>
+        </div>
+        </article>
+        <div class="row">
+            <div class="span2">
+                <a href="/<%= idea.id %>">Edit</a> | 
+                <a href="/<%= idea.id %>/delete">Delete</a>
+            </div>
+        </div>
+        <hr />
+    <% end %>
+</section>
+
+<section id="submit">
+    <form action="/" method="post">
+        <input type="text" name="title" placeholder="Title" /><br />
+        <textarea name="ideatext" placeholder="text goes here"></textarea>
+        <div class="row">
+            <div class="span1"><input type="submit" class="btn btn-primary" value="Submit" /></div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,18 @@
+<% if @idea %>
+  <script language="javascript" type="application/javascript">
+  // <!--
+  function cancel() {
+    window.location = "/<%= @idea.id %>";
+  }
+  // -->
+  </script>
+  <p>Are you sure you want to delete <em><%= @idea.title %></em>?</p>
+  <form action="/<%= @idea.id %>" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" class="btn btn-primary" value="Make it so" />
+    <input type="button" class="btn" value="Cancel" onClick="javascript:cancel()" />
+  </form>
+<% else %>
+  <p>Idea not found.</p>
+  <a href="/">Click here to return</a>
+<% end %>

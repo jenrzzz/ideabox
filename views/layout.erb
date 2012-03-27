@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      <link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+      <title><%= @title || "Page" %> | ideabox 0.2</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	   <div class="container">
+	   <header>
+	       <hgroup><div class="row">
+	           <h1>ideabox</h1></div>
+	           <div class="row">
+	           <h4>inspiration stash</h2></div>
+	       </hgroup>
+	   </header><br />
+	   <%= yield %>
+	   </div>
+    </body>
+</html>
