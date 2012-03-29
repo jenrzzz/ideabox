@@ -1,0 +1,45 @@
+#!/bin/bash
+. /etc/rc.d/init.d/functions
+
+ruby=/home/jenner2/.rvm/bin/bootup_ruby
+lockfile=${LOCKFILE-/var/lock/sinatra}
+app=/var/www/ideabox/idea.rb
+rvm=/home/jenner2/.rvm/bin/rvm
+pidfile=${PIDFILE-/var/run/sinatra.pid}
+RETVAL=0
+
+start () {
+	echo -n "Starting ideabox... "
+	[ -f ${lockfile} ] && echo -e $"\nideabox is already running." && return 1
+	touch ${lockfile}
+	cd `dirname ${app}`
+	daemon --pidfile=${pidfile} ${ruby} ${app} >> /var/log/sinatra 2>&1 &
+	RETVAL=$?
+    echo ""
+	[ $RETVAL = 0 ] && echo "Successfully started ideabox." && return 0
+	echo "There was a problem starting ${ruby} with ${app}"
+	rm -f ${lockfile} ${pidfile}
+}
+
+stop () {
+	echo -n "Stopping ideabox... "
+	[ ! -f ${lockfile} ] && echo "ideabox is not running." && exit 0
+	sudo killall "ruby"
+	rm -f ${lockfile} ${pidfile}
+    echo -e "\nSuccessfully stopped ideabox."
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop;;
+	*)
+		echo "Usage: ideabox {start|stop}"
+		exit 1
+esac
+
+exit $RETVAL
+	
+		
