@@ -2,16 +2,38 @@
     <% @ideas.each do |idea| %>
         <article>
         <div class="row">
-            <div class="span4"><h4><%= idea.title %></h4></div>
+            <div class="span4"><h4 title="<%= idea.created %>"><%= idea.title %></h4></div>
         </div>
         <div class="row">
             <div class="span8"><p><%= idea.text %></p></div>
+            <div class="span1" style="vertical-align:middle; text-align: center;">
+                    <a href="/<%= idea.id %>/upvote"><i class="icon-chevron-up"></i></a><br />
+                    <h3><%= idea.karma %></h3>
+                    <a href="/<%= idea.id %>/downvote"><i class="icon-chevron-down"></i></a>
+            </div>
+            <div class="span1">
+                <div style="vertical-align:middle; text-align: center;">
+                    <% if idea.highdea %>
+                        <img style="margin-left: auto; margin-right: auto; width:50%;" src="/img/hd.png" title="Highdea" alt="HD" />
+                    <% else %>
+                        <img style="margin-left: auto; margin-right: auto; width:50%;" src="/img/nhd.png" title="Not a highdea" alt="NHD" />
+                    <% end %><br />
+                </div>
+            </div>
         </div>
         </article>
         <div class="row">
-            <div class="span2">
-                <a href="/<%= idea.id %>">Edit</a> | 
-                <a href="/<%= idea.id %>/delete">Delete</a>
+            <div class="span8">
+                <span>
+                    <a href="/<%= idea.id %>">Edit</a> | 
+                    <a href="/<%= idea.id %>/delete">Delete</a> |
+                    <% if not idea.complete %>
+                        <a href="/<%= idea.id %>/complete">Complete</a>
+                    <% else %>
+                        <a href="/<%= idea.id %>/uncomplete">Uncomplete</a> | 
+                        Completed on <%= idea.completion_time.strftime('%A, %b %d, %Y') %>.
+                    <% end %>
+                </span>
             </div>
         </div>
         <hr />
@@ -22,6 +44,10 @@
     <form action="/" method="post">
         <input type="text" name="title" placeholder="Title" /><br />
         <textarea name="ideatext" placeholder="text goes here"></textarea>
+        <div class="row">
+            <div class="span1"><label for="highdea">Highdea?</label></div>
+            <div class="span1"><input type="checkbox" name="highdea" value="true" /></div>
+        </div>
         <div class="row">
             <div class="span1"><input type="submit" class="btn btn-primary" value="Submit" /></div>
         </div>
