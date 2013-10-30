@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'rdiscount'
 
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/data.db")

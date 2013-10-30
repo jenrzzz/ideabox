@@ -5,7 +5,7 @@
             <div class="span4"><h4 title="<%= idea.created %>"><%= idea.title %></h4></div>
         </div>
         <div class="row">
-            <div class="span8"><p><%= idea.text %></p></div>
+            <div class="span8"><p><%= RDiscount.new(idea.text).to_html %></p></div>
             <div class="span1" style="vertical-align:middle; text-align: center;">
                     <a href="/<%= idea.id %>/upvote"><i class="icon-chevron-up"></i></a><br />
                     <h3><%= idea.karma %></h3>
