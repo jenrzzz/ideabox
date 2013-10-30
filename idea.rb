@@ -4,10 +4,14 @@ require 'data_mapper'
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/data.db")
 
+configure do
+  enable :static, :sessions
+end
+
 helpers do
     def protected!
         unless authorized?
-          response['WWW-Authenticate'] = %(Basic realm="ideabox v0.2")
+          response['WWW-Authenticate'] = %(Basic realm="ideabox v0.3")
           throw :halt, [401, "Not authorized\n"]
         end
     end
