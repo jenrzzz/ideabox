@@ -13,10 +13,10 @@
     </div>
     <form action="/<%= @idea.id %>" method="post">
         <div class="row">
-            <div class="span4"><input name="title" type="text" value="<%= @idea.title %>" /></div>
+            <div class="span6"><input class="span6" name="title" type="text" value="<%= @idea.title %>" /></div>
         </div>
         <div class="row">
-            <div class="span4"><textarea name="ideatext"><%= @idea.text %></textarea></div>
+            <div class="span6"><textarea class="span6" name="ideatext"><%= @idea.text %></textarea></div>
         </div>
         <div class="row">
             <div class="span1"><label for="highdea">Highdea?</label></div>
