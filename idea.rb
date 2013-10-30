@@ -28,7 +28,7 @@ end
 class Idea
     include DataMapper::Resource
     property :id, Serial
-    property :title, String
+    property :title, String, :length => 255
     property :text, Text
     property :highdea, Boolean
     property :complete, Boolean
@@ -51,9 +51,10 @@ post '/' do
     @idea = Idea.create(
         :title => params[:title],
         :text => params[:ideatext],
-        :highdea => (params[:highdea] == "true") || false,
+        :highdea => !!params[:highdea],
         :created => Time.now
     )
+
     redirect '/'
 end
 
