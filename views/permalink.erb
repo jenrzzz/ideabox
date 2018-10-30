@@ -8,8 +8,7 @@
     </script>
     
     <div class="row">
-        <div class="span3">Editing <strong><%= @idea.title %></strong></div>
-        <div class="span1"><% if @idea.highdea %><img src="/img/hd.png" title="Highdea" alt="HD" /><% else %><img src="/img/nhd.png" title="Not a highdea" alt="NHD" /><% end %></div>
+        <div class="span4">Editing <strong><%= @idea.title %></strong></div>
     </div>
     <form action="/<%= @idea.id %>" method="post">
         <div class="row">
@@ -17,10 +16,6 @@
         </div>
         <div class="row">
             <div class="span6"><textarea class="span6" name="ideatext"><%= @idea.text %></textarea></div>
-        </div>
-        <div class="row">
-            <div class="span1"><label for="highdea">Highdea?</label></div>
-            <div class="span1"><input type="checkbox" name="highdea" value="true" <% if @idea.highdea %> checked <% end %>/></div>
         </div>
         <div class="row">
             <div class="span2">

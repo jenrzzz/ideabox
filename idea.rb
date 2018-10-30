@@ -30,7 +30,6 @@ class Idea
     property :id, Serial
     property :title, String, :length => 255
     property :text, Text
-    property :highdea, Boolean
     property :complete, Boolean
     property :completion_time, DateTime
     property :created, DateTime
@@ -51,7 +50,6 @@ post '/' do
     @idea = Idea.create(
         :title => params[:title],
         :text => params[:ideatext],
-        :highdea => !!params[:highdea],
         :created => Time.now
     )
 
@@ -75,7 +73,6 @@ post '/:id' do
     idea.update(
         :title => params[:title],
         :text => params[:ideatext],
-        :highdea => (params[:highdea] == "true") || false,
     )
     redirect '/'
 end
